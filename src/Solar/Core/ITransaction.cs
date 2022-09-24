@@ -18,7 +18,7 @@ namespace Solar
         IEnumerable<ICommitable> ApplyChanges();
 
         bool IsValid { get; }
-        void Invalidate();
+        void Invalidate(string failureMessage = null);
     }
 
     public interface ITransaction<TComponent> : ITransaction

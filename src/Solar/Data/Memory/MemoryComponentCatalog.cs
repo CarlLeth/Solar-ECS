@@ -28,6 +28,11 @@ namespace Solar.Data.Memory
 
         public IStore Store(Type componentType)
         {
+            if (!StoresByType.ContainsKey(componentType))
+            {
+                throw new InvalidOperationException($"Component type '{componentType.Name}' has not been registered with this in-memory catalog. Is it missing registration in a Component Package?");
+            }
+
             return (IStore)StoresByType[componentType];
         }
 

@@ -45,7 +45,7 @@ namespace Solar.Ecs.Recipes
             }
             else
             {
-                baseTransaction.Invalidate();
+                baseTransaction.Invalidate($"Transaction was invalidated because a model was assigned which failed a Where condition: '{Predicate}'");
             }
         }
     }

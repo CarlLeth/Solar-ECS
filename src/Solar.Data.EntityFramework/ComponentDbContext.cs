@@ -18,7 +18,7 @@ namespace Solar.Data.EntityFramework
 {
     public class ComponentDbContext : DbContext, IComponentCatalog, ICommitable
     {
-        private static readonly MethodInfo StoreMethod = typeof(ComponentDbContext).GetMethod("CreateDbSetStoreGeneric", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo StoreMethod = typeof(ComponentDbContext).GetMethod(nameof(CreateDbSetStoreGeneric), BindingFlags.NonPublic | BindingFlags.Instance);
 
         protected ISet<Type> RegisteredComponentTypes { get; private set; }
         protected IPersistenceTypeLibrary PersistenceTypeLibrary { get; private set; }

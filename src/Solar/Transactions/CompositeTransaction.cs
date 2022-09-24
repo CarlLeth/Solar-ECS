@@ -22,9 +22,9 @@ namespace Solar.Ecs.Transactions
             return Transactions.SelectMany(o => o.ApplyChanges()).ToList().Distinct();
         }
 
-        public void Invalidate()
+        public void Invalidate(string failureMessage = null)
         {
-            Transactions.ForEach(o => o.Invalidate());
+            Transactions.ForEach(o => o.Invalidate(failureMessage));
         }
     }
 }

@@ -110,9 +110,9 @@ namespace Solar.Ecs.Construction
                 get { return BaseTransaction.IsValid; }
             }
 
-            public void Invalidate()
+            public void Invalidate(string failureMessage = null)
             {
-                BaseTransaction.Invalidate();
+                BaseTransaction.Invalidate(failureMessage);
             }
 
             public bool CanAssign(Guid id, TComponent model)

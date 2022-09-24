@@ -12,6 +12,8 @@ namespace Solar.Ecs.Transactions
         public IQueryPlan<TModel> ExistingModels { get; private set; }
         public bool IsValid { get; private set; }
 
+        private string FailureMessage;
+
         protected EcsTransactionBase(IQueryPlan<TModel> existingModels)
         {
             this.IsValid = true;
@@ -24,9 +26,10 @@ namespace Solar.Ecs.Transactions
 
         protected abstract IEnumerable<ICommitable> Apply();
 
-        public void Invalidate()
+        public void Invalidate(string failureMessage = null)
         {
             IsValid = false;
+            FailureMessage = failureMessage;
         }
 
         public IEnumerable<ICommitable> ApplyChanges()
@@ -39,7 +42,7 @@ namespace Solar.Ecs.Transactions
         {
             if (!IsValid)
             {
-                throw new InvalidOperationException("Transaction has been invalidated.");
+                throw new InvalidOperationException(FailureMessage ?? "Transaction has been invalidated.");
             }
         }
     }

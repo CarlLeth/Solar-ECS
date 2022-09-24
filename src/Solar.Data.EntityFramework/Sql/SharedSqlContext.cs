@@ -36,6 +36,7 @@ namespace Solar.Data.EntityFramework.Sql
             {
                 var conn = GetOpenConnection();
                 Transaction = conn.BeginTransaction();
+                IsCommited = false;
             }
 
             return Transaction;
@@ -52,17 +53,28 @@ namespace Solar.Data.EntityFramework.Sql
 
             try
             {
-                Transaction.Commit();
+                if (Transaction != null)
+                {
+                    Transaction.Commit();
+                }
             }
             catch (Exception)
             {
-                Transaction.Rollback();
+                if (Transaction != null)
+                {
+                    Transaction.Rollback();
+                }
+
                 throw;
             }
             finally
             {
-                Transaction.Dispose();
-                Transaction = null;
+                if (Transaction != null)
+                {
+                    Transaction.Dispose();
+                    Transaction = null;
+                }
+
                 Connection.Close();
             }
         }

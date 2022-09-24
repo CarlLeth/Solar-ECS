@@ -20,7 +20,12 @@ namespace Solar.Ecs.Transactions
 
         public static ITransaction Empty()
         {
-            return new EmptyTransaction();
+            return new EmptyTransaction<object>();
+        }
+
+        public static ITransaction<TModel> Empty<TModel>()
+        {
+            return new EmptyTransaction<TModel>();
         }
     }
 }
