@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Solar.Common.Engineering\Solar.Common.Engineering.csproj" />
-    <ProjectReference Include="..\Solar.Common.Globalization\Solar.Common.Globalization.csproj" />
-    <ProjectReference Include="..\Solar.Common\Solar.Common.csproj" />
-    <ProjectReference Include="..\Solar.Data.EntityFramework\Solar.Data.EntityFramework.csproj" />
-    <ProjectReference Include="..\Solar\Solar.csproj" />
+    <ProjectReference Include="..\SolarEcs.Common.Engineering\SolarEcs.Common.Engineering.csproj" />
+    <ProjectReference Include="..\SolarEcs.Common.Globalization\SolarEcs.Common.Globalization.csproj" />
+    <ProjectReference Include="..\SolarEcs.Common\SolarEcs.Common.csproj" />
+    <ProjectReference Include="..\SolarEcs.Data.EntityFramework\SolarEcs.Data.EntityFramework.csproj" />
+    <ProjectReference Include="..\SolarEcs\SolarEcs.csproj" />
   </ItemGroup>
 
 </Project>

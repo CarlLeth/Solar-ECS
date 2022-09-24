@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar", "Solar\Solar.csproj", "{1DE7F40A-0095-45E5-98C4-19E3921D69FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs", "SolarEcs\SolarEcs.csproj", "{1DE7F40A-0095-45E5-98C4-19E3921D69FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Data.EntityFramework", "Solar.Data.EntityFramework\Solar.Data.EntityFramework.csproj", "{1C4F939A-DF07-4E17-AC84-A17146FEAFA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.Data.EntityFramework", "SolarEcs.Data.EntityFramework\SolarEcs.Data.EntityFramework.csproj", "{1C4F939A-DF07-4E17-AC84-A17146FEAFA9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Tests.NetCore", "Solar.Tests.NetCore\Solar.Tests.NetCore.csproj", "{CE277157-765E-4D76-B4D2-101A63F7E3C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.Tests.NetCore", "SolarEcs.Tests.NetCore\SolarEcs.Tests.NetCore.csproj", "{CE277157-765E-4D76-B4D2-101A63F7E3C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common", "Solar.Common\Solar.Common.csproj", "{833292A4-E28A-40A7-8484-6832FBE21BA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.Common", "SolarEcs.Common\SolarEcs.Common.csproj", "{833292A4-E28A-40A7-8484-6832FBE21BA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common.Engineering", "Solar.Common.Engineering\Solar.Common.Engineering.csproj", "{9DE8569B-CAC6-434E-81DB-6057D503D9FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.Common.Engineering", "SolarEcs.Common.Engineering\SolarEcs.Common.Engineering.csproj", "{9DE8569B-CAC6-434E-81DB-6057D503D9FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common.Globalization", "Solar.Common.Globalization\Solar.Common.Globalization.csproj", "{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.Common.Globalization", "SolarEcs.Common.Globalization\SolarEcs.Common.Globalization.csproj", "{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.TestHelpers", "Solar.TestHelpers\Solar.TestHelpers.csproj", "{3EA5AA4B-80DF-4059-BC77-9AAC3B4269D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarEcs.TestHelpers", "SolarEcs.TestHelpers\SolarEcs.TestHelpers.csproj", "{3EA5AA4B-80DF-4059-BC77-9AAC3B4269D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

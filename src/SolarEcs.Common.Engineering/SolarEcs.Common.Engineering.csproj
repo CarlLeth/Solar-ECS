@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.0</Version>
+    <Authors>Carl Leth</Authors>
+    <Description>Solar components and systems dealing with common engineering concerns, such as units of measure.</Description>
+    <Copyright>2022 Carl Leth</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SolarEcs.Common\SolarEcs.Common.csproj" />
+    <ProjectReference Include="..\SolarEcs\SolarEcs.csproj" />
+  </ItemGroup>
+
+</Project>
