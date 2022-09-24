@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Solar.Common.Engineering\Solar.Common.Engineering.csproj" />
     <ProjectReference Include="..\Solar.Common.Globalization\Solar.Common.Globalization.csproj" />
-    <ProjectReference Include="..\Solar.Common.WebSecurity\Solar.Common.WebSecurity.csproj" />
     <ProjectReference Include="..\Solar.Common\Solar.Common.csproj" />
     <ProjectReference Include="..\Solar.Data.EntityFramework\Solar.Data.EntityFramework.csproj" />
     <ProjectReference Include="..\Solar\Solar.csproj" />

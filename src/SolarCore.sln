@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common", "Solar.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common.Engineering", "Solar.Common.Engineering\Solar.Common.Engineering.csproj", "{9DE8569B-CAC6-434E-81DB-6057D503D9FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common.WebSecurity", "Solar.Common.WebSecurity\Solar.Common.WebSecurity.csproj", "{73B19AAB-B6C5-4876-A5B8-B726ABBEB1B6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.Common.Globalization", "Solar.Common.Globalization\Solar.Common.Globalization.csproj", "{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solar.TestHelpers", "Solar.TestHelpers\Solar.TestHelpers.csproj", "{3EA5AA4B-80DF-4059-BC77-9AAC3B4269D4}"
@@ -45,10 +43,6 @@ Global
 		{9DE8569B-CAC6-434E-81DB-6057D503D9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DE8569B-CAC6-434E-81DB-6057D503D9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DE8569B-CAC6-434E-81DB-6057D503D9FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73B19AAB-B6C5-4876-A5B8-B726ABBEB1B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73B19AAB-B6C5-4876-A5B8-B726ABBEB1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73B19AAB-B6C5-4876-A5B8-B726ABBEB1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73B19AAB-B6C5-4876-A5B8-B726ABBEB1B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44940B69-43A9-4A53-9806-9DC7C0B9DDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
