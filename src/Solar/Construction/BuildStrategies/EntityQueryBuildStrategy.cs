@@ -1,6 +1,6 @@
 ﻿using Fusic;
-using Solar;
-using Solar.Ecs.Queries;
+using SolarEcs;
+using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.BuildStrategies
+namespace SolarEcs.Construction.BuildStrategies
 {
     public class EntityQueryBuildStrategy : IBuildStrategy
     {

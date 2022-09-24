@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.BuildStrategies
+namespace SolarEcs.Construction.BuildStrategies
 {
     public sealed class ComponentSetBuildStrategy : IBuildStrategy
     {

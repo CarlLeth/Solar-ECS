@@ -1,11 +1,11 @@
-﻿using Solar.Ecs.Queries;
+﻿using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.Modifiers
+namespace SolarEcs.Construction.Modifiers
 {
     public class UnionQueryReductionStrategy<TKey, TResult> : IReductionStrategy<IQueryPlan<TKey, TResult>>
     {

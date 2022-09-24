@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework.Sql
+namespace SolarEcs.Data.EntityFramework.Sql
 {
     public class SqlTransactionCommitable : ICommitable
     {

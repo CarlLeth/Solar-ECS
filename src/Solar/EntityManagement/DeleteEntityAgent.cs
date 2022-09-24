@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.EntityManagement
+namespace SolarEcs.EntityManagement
 {
     public class DeleteEntityAgent : EntityVisitor, IDeleteEntityAgent
     {

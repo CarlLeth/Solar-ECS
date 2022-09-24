@@ -1,6 +1,6 @@
-﻿using Solar.Ecs.Data;
-using Solar.Ecs.Infrastructure;
-using Solar.Ecs.Queries;
+﻿using SolarEcs.Data;
+using SolarEcs.Infrastructure;
+using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     public static partial class QueryPlan
     {
@@ -156,7 +156,7 @@ namespace Solar
     }
 }
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public class LeftJoinQueryPlanImplicit<TLeftResult, TRightKey, TRightResult, TJoinKey, TResult> : LeftJoinQueryPlan<Guid, TLeftResult, TRightKey, TRightResult, TJoinKey, Guid, TResult>,
         ILeftJoinedQueryPlan<TJoinKey, TResult>

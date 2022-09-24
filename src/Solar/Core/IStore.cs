@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Infrastructure;
+using SolarEcs.Infrastructure;
 
-namespace Solar
+namespace SolarEcs
 {
     /// <summary>
     /// Semantic interfacing indicating that this type should be treated like an IStore
@@ -132,14 +132,14 @@ namespace Solar
         {
             if (store == null) throw new ArgumentNullException(nameof(store));
 
-            return new Solar.Ecs.Queries.EntityComponentQueryPlan<TComponent>(store);
+            return new SolarEcs.Queries.EntityComponentQueryPlan<TComponent>(store);
         }
 
         public static IRecipe<TComponent> ToRecipe<TComponent>(this IStore<TComponent> store)
         {
             if (store == null) throw new ArgumentNullException(nameof(store));
 
-            return new Solar.Ecs.Recipes.ComponentRecipe<TComponent>(store);
+            return new SolarEcs.Recipes.ComponentRecipe<TComponent>(store);
         }
     }
 }

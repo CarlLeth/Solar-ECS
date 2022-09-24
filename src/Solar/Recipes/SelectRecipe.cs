@@ -1,4 +1,4 @@
-﻿using Solar.Ecs.Transactions;
+﻿using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Recipes
+namespace SolarEcs.Recipes
 {
     public class SelectRecipe<TStart, TFinal> : IRecipe<TFinal>
     {

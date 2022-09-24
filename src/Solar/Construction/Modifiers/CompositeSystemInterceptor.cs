@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.Modifiers
+namespace SolarEcs.Construction.Modifiers
 {
     public class CompositeSystemInterceptor : IInterceptor
     {

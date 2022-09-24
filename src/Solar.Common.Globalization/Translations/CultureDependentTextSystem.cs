@@ -1,11 +1,11 @@
-﻿using Solar.Common.Identification;
+﻿using SolarEcs.Common.Identification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Globalization.Translations
+namespace SolarEcs.Common.Globalization.Translations
 {
     public class CultureDependentTextSystem : ITextSystem
     {
@@ -38,7 +38,7 @@ namespace Solar.Common.Globalization.Translations
         {
             get
             {
-                return Solar.Recipe.Empty<TextModel>();
+                return SolarEcs.Recipe.Empty<TextModel>();
             }
         }
     }

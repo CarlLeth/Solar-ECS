@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     /// <summary>
     /// Configures every property of the Component associated with a persisted type to remove "Component_" from the name of the mapped column.

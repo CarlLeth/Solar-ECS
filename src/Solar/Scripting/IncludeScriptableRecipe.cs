@@ -1,11 +1,11 @@
-﻿using Solar.Ecs.Transactions;
+﻿using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Scripting
+namespace SolarEcs.Scripting
 {
     public class IncludeScriptableRecipe<TModel, TInclude> : IScriptableRecipe<TModel>
     {

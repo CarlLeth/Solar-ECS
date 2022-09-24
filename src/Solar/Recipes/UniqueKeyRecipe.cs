@@ -1,5 +1,5 @@
-﻿using Solar.Ecs.Infrastructure;
-using Solar.Ecs.Transactions;
+﻿using SolarEcs.Infrastructure;
+using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Recipes
+namespace SolarEcs.Recipes
 {
     public class UniqueKeyRecipe<TModel> : IRecipe<TModel>
     {

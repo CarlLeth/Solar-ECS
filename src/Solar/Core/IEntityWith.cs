@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     public interface IEntityWith<TComponent> : IEntity
     {

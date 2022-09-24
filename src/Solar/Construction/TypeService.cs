@@ -1,4 +1,4 @@
-﻿using Solar.Ecs.Infrastructure;
+﻿using SolarEcs.Infrastructure;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction
+namespace SolarEcs.Construction
 {
     public class TypeService : ITypeService
     {

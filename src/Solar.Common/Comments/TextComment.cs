@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Comments
+namespace SolarEcs.Common.Comments
 {
     public class TextComment
     {

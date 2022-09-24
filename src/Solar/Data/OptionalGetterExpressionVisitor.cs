@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Infrastructure;
+using SolarEcs.Infrastructure;
 
-namespace Solar.Ecs.Data
+namespace SolarEcs.Data
 {
     public class OptionalGetterExpressionVisitor : ExpressionVisitor
     {

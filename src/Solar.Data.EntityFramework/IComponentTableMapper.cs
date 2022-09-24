@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     /// <summary>
     /// Responsible for mapping component-persistence types to a DbModel during the EntityFramework model creation phase.

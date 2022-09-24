@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public class PlanJoinSpecification<TPlanKey, TPlanResult, TJoinKey>
     {

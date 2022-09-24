@@ -4,10 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Infrastructure;
-using Solar.Ecs.Queries;
+using SolarEcs.Infrastructure;
+using SolarEcs.Queries;
 
-namespace Solar
+namespace SolarEcs
 {
     public static partial class QueryPlan
     {
@@ -80,7 +80,7 @@ namespace Solar
     }
 }
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public class GroupJoinQueryPlanImplicit<TLeftResult, TRightKey, TRightResult, TJoinKey, TResult> : GroupJoinQueryPlan<Guid, TLeftResult, TRightKey, TRightResult, TJoinKey, Guid, TResult>,
         ILeftJoinedQueryPlan<TJoinKey, TResult>

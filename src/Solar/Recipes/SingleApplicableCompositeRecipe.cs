@@ -1,13 +1,13 @@
-﻿using Solar.Ecs.Basics;
-using Solar.Ecs.Queries;
-using Solar.Ecs.Transactions;
+﻿using SolarEcs.Basics;
+using SolarEcs.Queries;
+using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Recipes
+namespace SolarEcs.Recipes
 {
     public class SingleApplicableCompositeRecipe<TModel> : IRecipe<TModel>
     {

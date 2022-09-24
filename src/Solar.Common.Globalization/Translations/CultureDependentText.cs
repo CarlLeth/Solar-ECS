@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Globalization.Translations
+namespace SolarEcs.Common.Globalization.Translations
 {
     public class CultureDependentText
     {

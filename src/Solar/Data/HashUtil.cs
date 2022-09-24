@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Data
+namespace SolarEcs.Data
 {
     // See https://stackoverflow.com/a/34006336/1362272
     public static class HashUtil

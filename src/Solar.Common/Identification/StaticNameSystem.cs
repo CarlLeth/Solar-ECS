@@ -1,4 +1,4 @@
-﻿using Solar.Common.Identification;
+﻿using SolarEcs.Common.Identification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Identification
+namespace SolarEcs.Common.Identification
 {
     public class StaticNameSystem : INameSystem
     {

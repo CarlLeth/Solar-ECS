@@ -1,13 +1,13 @@
-﻿using Solar.Common.Globalization.Translations;
-using Solar.Common.Identification;
-using Solar.Ecs.Construction;
+﻿using SolarEcs.Common.Globalization.Translations;
+using SolarEcs.Common.Identification;
+using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Globalization
+namespace SolarEcs.Common.Globalization
 {
     public class GlobalizationComponentPackage : IComponentPackage
     {

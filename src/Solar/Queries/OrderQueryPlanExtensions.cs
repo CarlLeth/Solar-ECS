@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Queries;
+using SolarEcs.Queries;
 
-namespace Solar
+namespace SolarEcs
 {
     public static partial class QueryPlan
     {

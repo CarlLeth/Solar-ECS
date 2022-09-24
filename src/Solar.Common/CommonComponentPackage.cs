@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Construction;
-using Solar.Common.ChangeTracking;
-using Solar.Common.Lists;
-using Solar.Common.Identification;
-using Solar.Common.Hierarchy;
-using Solar.Common.Comments;
-using Solar.Common.Time;
-using Solar.Common.Contacts;
+using SolarEcs.Construction;
+using SolarEcs.Common.ChangeTracking;
+using SolarEcs.Common.Lists;
+using SolarEcs.Common.Identification;
+using SolarEcs.Common.Hierarchy;
+using SolarEcs.Common.Comments;
+using SolarEcs.Common.Time;
+using SolarEcs.Common.Contacts;
 
-namespace Solar.Common
+namespace SolarEcs.Common
 {
     public class CommonComponentPackage : IComponentPackage
     {

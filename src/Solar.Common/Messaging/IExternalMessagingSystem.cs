@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Messaging
+namespace SolarEcs.Common.Messaging
 {
     /// <summary>
     /// Allows the sending of messages to users via a channel external to the main application, e.g. for security alerts or two-factor authentication.

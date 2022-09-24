@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     /// <summary>
     /// Maps a component type to a corresponding persistence type for use in EntityFramework models.

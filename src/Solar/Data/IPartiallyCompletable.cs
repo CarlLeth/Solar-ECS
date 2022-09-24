@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Data;
+using SolarEcs.Data;
 
-namespace Solar.Ecs.Data
+namespace SolarEcs.Data
 {
     /// <summary>
     /// Represents data that can be stored in an incomplete state, and can be checked for completeness at runtime.
@@ -16,7 +16,7 @@ namespace Solar.Ecs.Data
     }
 }
 
-namespace Solar
+namespace SolarEcs
 {
     public static class PartiallyCompletableExtensions
     {

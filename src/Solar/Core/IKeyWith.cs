@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     public interface IKeyWith<out TKey, out TModel>
     {

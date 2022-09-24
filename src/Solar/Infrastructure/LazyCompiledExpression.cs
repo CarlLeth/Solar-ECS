@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Infrastructure
+namespace SolarEcs.Infrastructure
 {
     public class LazyCompiledExpression<TDelegate>
     {

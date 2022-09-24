@@ -1,7 +1,7 @@
 ﻿using Fusic;
-using Solar.Ecs.Construction;
-using Solar.Ecs.Construction.Modifiers;
-using Solar.Ecs.Queries;
+using SolarEcs.Construction;
+using SolarEcs.Construction.Modifiers;
+using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.Modifiers
+namespace SolarEcs.Construction.Modifiers
 {
     public class ChainOfCommandQueryReductionStrategy<TKey, TResult> : IReductionStrategy<IQueryPlan<TKey, TResult>>
     {
@@ -123,7 +123,7 @@ namespace Solar.Ecs.Construction.Modifiers
     }
 }
 
-namespace Solar
+namespace SolarEcs
 {
     public static class EcsContainerChainOfCommandExtensions
     {

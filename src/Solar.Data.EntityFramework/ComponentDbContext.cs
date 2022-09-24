@@ -1,6 +1,6 @@
-﻿using Solar.Data.EntityFramework.ComponentTableMappers;
-using Solar.Data.EntityFramework.Sql;
-using Solar.Ecs.Construction;
+﻿using SolarEcs.Data.EntityFramework.ComponentTableMappers;
+using SolarEcs.Data.EntityFramework.Sql;
+using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     public class ComponentDbContext : DbContext, IComponentCatalog, ICommitable
     {

@@ -1,11 +1,11 @@
-﻿using Solar.Ecs.Construction;
+﻿using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.Memory
+namespace SolarEcs.Data.Memory
 {
     public class MemoryComponentCatalog : IPurgeableComponentCatalog, IComponentRegistration
     {

@@ -1,6 +1,6 @@
-﻿using Solar.Data.EntityFramework;
-using Solar.Data.EntityFramework.Sql;
-using Solar.Ecs.Transactions;
+﻿using SolarEcs.Data.EntityFramework;
+using SolarEcs.Data.EntityFramework.Sql;
+using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     public class DbSetStore<TPersisted, TComponent> : IStore<TComponent>
         where TPersisted : EntityWith<TComponent>

@@ -1,12 +1,12 @@
-﻿using Solar.Common.Engineering.Measurements;
-using Solar.Ecs.Construction;
+﻿using SolarEcs.Common.Engineering.Measurements;
+using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Engineering
+namespace SolarEcs.Common.Engineering
 {
     public class EngineeringComponentPackage : IComponentPackage
     {

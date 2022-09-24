@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.ChangeTracking
+namespace SolarEcs.Common.ChangeTracking
 {
     /// <summary>
     /// Tracks the date and user of every commit of arbitrary entities.

@@ -1,12 +1,12 @@
 ﻿using Fusic;
-using Solar.Ecs.Construction.Modifiers;
+using SolarEcs.Construction.Modifiers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction.BuildStrategies
+namespace SolarEcs.Construction.BuildStrategies
 {
     public class RecipeReductionStrategyBuildStrategy : IBuildStrategy
     {

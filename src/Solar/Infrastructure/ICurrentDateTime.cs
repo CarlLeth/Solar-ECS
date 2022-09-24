@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Infrastructure
+namespace SolarEcs.Infrastructure
 {
     public interface ICurrentDateTime
     {

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Infrastructure;
-using Solar;
+using SolarEcs.Infrastructure;
+using SolarEcs;
 
 namespace System.Linq
 {

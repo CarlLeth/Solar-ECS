@@ -4,10 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Ecs.Data;
-using Solar.Ecs.Infrastructure;
+using SolarEcs.Data;
+using SolarEcs.Infrastructure;
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public static class QueryExpressions
     {

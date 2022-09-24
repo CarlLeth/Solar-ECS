@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Contacts
+namespace SolarEcs.Common.Contacts
 {
     public class ContactInfo
     {

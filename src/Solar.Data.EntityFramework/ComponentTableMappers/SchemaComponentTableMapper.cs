@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework.ComponentTableMappers
+namespace SolarEcs.Data.EntityFramework.ComponentTableMappers
 {
     /// <summary>
     /// Maps a component to a table in a schema based on the top-level namespace.

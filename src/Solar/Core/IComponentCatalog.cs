@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     /// <summary>
     /// Provides data access to all component types.

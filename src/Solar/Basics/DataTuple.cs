@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     /// <summary>
     /// Contains helper methods for constructing DataTuples.

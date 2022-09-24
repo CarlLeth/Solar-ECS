@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Recipes
+namespace SolarEcs.Recipes
 {
     public class LambdaRecipe<TModel> : IRecipe<TModel>
     {

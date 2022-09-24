@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Transactions
+namespace SolarEcs.Transactions
 {
     public class ActionBufferingTransaction<TComponent> : EcsTransactionBase<TComponent>
     {

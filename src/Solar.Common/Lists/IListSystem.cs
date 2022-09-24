@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Lists
+namespace SolarEcs.Common.Lists
 {
     public interface IListSystem : ISystem
     {

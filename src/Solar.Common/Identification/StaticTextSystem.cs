@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Identification
+namespace SolarEcs.Common.Identification
 {
     public class StaticTextSystem : ITextSystem
     {

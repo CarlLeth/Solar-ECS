@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Messaging
+namespace SolarEcs.Common.Messaging
 {
     /// <summary>
     /// Defines parameters necessary for composing and sending automated messages from the app.

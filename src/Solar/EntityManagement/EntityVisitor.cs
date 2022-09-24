@@ -1,4 +1,4 @@
-﻿using Solar.Ecs.Construction;
+﻿using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.EntityManagement
+namespace SolarEcs.EntityManagement
 {
     public enum ComponentTraversalMode
     {

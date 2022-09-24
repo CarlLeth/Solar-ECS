@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Solar.Common.Identification;
+using SolarEcs.Common.Identification;
 
-namespace Solar.Common.LookupLists
+namespace SolarEcs.Common.LookupLists
 {
     public class CodeNamedLookupListSystem : ICodeNamedLookupListSystem
     {

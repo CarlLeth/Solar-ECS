@@ -1,4 +1,4 @@
-﻿using Solar.Ecs.Transactions;
+﻿using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework.Sql
+namespace SolarEcs.Data.EntityFramework.Sql
 {
     public class DbSetTransaction<TPersisted, TComponent> : CachingComponentTransactionBase<TComponent>
         where TPersisted : EntityWith<TComponent>

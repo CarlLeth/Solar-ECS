@@ -1,4 +1,4 @@
-﻿using Solar.Ecs.Queries;
+﻿using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     public static partial class QueryPlan
     {
@@ -20,7 +20,7 @@ namespace Solar
     }
 }
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public class EntityQueryWrapper<TResult> : IOrderedQueryPlan<TResult>
     {

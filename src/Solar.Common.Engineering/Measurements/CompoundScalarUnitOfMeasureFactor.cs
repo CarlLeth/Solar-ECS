@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Engineering.Measurements
+namespace SolarEcs.Common.Engineering.Measurements
 {
     /// <summary>
     /// Represents one factor in a compount scalar unit, along with its exponent.

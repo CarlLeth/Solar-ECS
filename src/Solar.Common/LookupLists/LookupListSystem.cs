@@ -1,13 +1,13 @@
-﻿using Solar.Common.Identification;
-using Solar.Common.Lists;
-using Solar.Ecs.Transactions;
+﻿using SolarEcs.Common.Identification;
+using SolarEcs.Common.Lists;
+using SolarEcs.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.LookupLists
+namespace SolarEcs.Common.LookupLists
 {
     public class LookupListSystem : ILookupListSystem
     {

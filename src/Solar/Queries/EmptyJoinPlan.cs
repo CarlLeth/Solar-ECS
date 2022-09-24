@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Queries
+namespace SolarEcs.Queries
 {
     public class EmptyJoinPlanImplicit<TRightKey, TJoinKey, TResult> : EmptyJoinPlan<Guid, TRightKey, TJoinKey, Guid, TResult>,
         ILeftJoinedQueryPlan<TJoinKey, TResult>, IJoinedQueryPlan<TRightKey, TJoinKey, TResult>

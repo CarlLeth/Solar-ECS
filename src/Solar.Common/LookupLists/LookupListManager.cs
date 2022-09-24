@@ -1,11 +1,11 @@
-﻿using Solar.Ecs.Scripting;
+﻿using SolarEcs.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.LookupLists
+namespace SolarEcs.Common.LookupLists
 {
     public class LookupListManager
     {

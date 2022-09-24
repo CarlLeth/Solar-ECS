@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar
+namespace SolarEcs
 {
     /// <summary>
     /// Extending ISystem denotes an interface as one that can be implemented by 

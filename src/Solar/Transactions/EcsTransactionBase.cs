@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Transactions
+namespace SolarEcs.Transactions
 {
     public abstract class EcsTransactionBase<TModel> : ITransaction<TModel>
     {

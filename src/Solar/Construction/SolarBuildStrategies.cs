@@ -1,6 +1,6 @@
 ﻿using Fusic;
 using Fusic.Common;
-using Solar.Ecs.Construction.BuildStrategies;
+using SolarEcs.Construction.BuildStrategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Ecs.Construction
+namespace SolarEcs.Construction
 {
     public class SolarBuildStrategies : BuildStrategyChain, IRegisterImplementations
     {

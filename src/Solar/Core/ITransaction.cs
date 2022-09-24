@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Solar
+namespace SolarEcs
 {
     public interface ICommitable
     {

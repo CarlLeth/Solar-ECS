@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Hierarchy
+namespace SolarEcs.Common.Hierarchy
 {
     public interface IHierarchyService
     {

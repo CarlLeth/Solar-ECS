@@ -1,4 +1,4 @@
-﻿using Solar.Common.Identification;
+﻿using SolarEcs.Common.Identification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Common.Globalization.Translations
+namespace SolarEcs.Common.Globalization.Translations
 {
     public class CultureDependentNameSystem : INameSystem
     {
@@ -38,7 +38,7 @@ namespace Solar.Common.Globalization.Translations
 
         public IRecipe<NameModel> Recipe
         {
-            get { return Solar.Recipe.Empty<NameModel>(); }
+            get { return SolarEcs.Recipe.Empty<NameModel>(); }
         }
     }
 }

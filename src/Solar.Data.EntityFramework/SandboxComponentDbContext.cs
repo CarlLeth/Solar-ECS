@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solar.Data.EntityFramework
+namespace SolarEcs.Data.EntityFramework
 {
     /// <summary>
     /// A ComponentDbContext with the additional ability to destroy all data in the database, for testing, development, and sandbox purposes.
