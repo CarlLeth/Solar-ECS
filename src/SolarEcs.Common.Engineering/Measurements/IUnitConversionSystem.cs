@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.Engineering.Measurements
 {
-    public interface IUnitConversionSystem : ISystem
+    public interface IUnitConversionSystem
     {
         IQueryPlan<IUnitConversionStrategy> Strategies { get; }
     }

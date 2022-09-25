@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.Identification
 {
-    public interface INameSystem : ISystem
+    public interface INameSystem
     {
         IQueryPlan<NameModel> Query { get; }
         IRecipe<NameModel> Recipe { get; }

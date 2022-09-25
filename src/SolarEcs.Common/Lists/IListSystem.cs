@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.Lists
 {
-    public interface IListSystem : ISystem
+    public interface IListSystem
     {
         IQueryPlan<ListMembershipModel> Query { get; }
         IRecipe<ListMembershipModel> Recipe { get; }

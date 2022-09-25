@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.Identification
 {
-    public interface ITextSystem : ISystem
+    public interface ITextSystem
     {
         IQueryPlan<TextModel> Query { get; }
         IRecipe<TextModel> Recipe { get; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.LookupLists
 {
-    public interface ILookupListSystem : ISystem
+    public interface ILookupListSystem
     {
         IQueryPlan<LookupListModel> QueryFor(Guid list);
         IRecipe<LookupListModel> RecipeFor(Guid list);

@@ -12,12 +12,10 @@ namespace SolarEcs.Construction
 {
     public class SolarBuildStrategies : BuildStrategyChain, IRegisterImplementations
     {
-        private ITypeService TypeService;
         private CommonBuildStrategies CommonStrategies;
 
         public SolarBuildStrategies(Func<IComponentCatalog> catalogFactory, ITypeService typeService)
         {
-            this.TypeService = typeService;
             this.CommonStrategies = new CommonBuildStrategies();
 
             this.RegisterFactoryMethod<IComponentCatalog>(catalogFactory);
@@ -34,7 +32,6 @@ namespace SolarEcs.Construction
 
             AddBootstrapped<StoreBuildStrategy>();
             AddBootstrapped<ComponentSetBuildStrategy>();
-            AddInstance(new CompositeSystemBuildStrategy(TypeService));
             AddInstance(new DependencyFactoryBuildStrategy());
             AddBootstrapped<EntityQueryBuildStrategy>();
             AddInstance(new QueryReductionStrategyBuildStrategy());
