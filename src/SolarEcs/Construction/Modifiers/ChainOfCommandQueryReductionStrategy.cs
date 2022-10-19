@@ -1,5 +1,4 @@
-﻿using Fusic;
-using SolarEcs.Construction;
+﻿using SolarEcs.Construction;
 using SolarEcs.Construction.Modifiers;
 using SolarEcs.Queries;
 using System;
@@ -119,17 +118,6 @@ namespace SolarEcs.Construction.Modifiers
 
                 return resultsByKey.Values;
             }
-        }
-    }
-}
-
-namespace SolarEcs
-{
-    public static class EcsContainerChainOfCommandExtensions
-    {
-        public static void RegisterChainOfCommandReducer<TKey, TResult>(this SolarBuildStrategies strategies, params Type[] systemTypesInPriorityOrder)
-        {
-            strategies.RegisterInstance<IReductionStrategy<IQueryPlan<TKey, TResult>>>(new ChainOfCommandQueryReductionStrategy<TKey, TResult>(systemTypesInPriorityOrder));
         }
     }
 }

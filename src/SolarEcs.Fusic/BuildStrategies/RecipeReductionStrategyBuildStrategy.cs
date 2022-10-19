@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarEcs.Construction.BuildStrategies
+namespace SolarEcs.Fusic.BuildStrategies
 {
     public class RecipeReductionStrategyBuildStrategy : IBuildStrategy
     {

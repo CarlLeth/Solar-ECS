@@ -1,6 +1,7 @@
 ﻿using Fusic;
 using Fusic.Common;
-using SolarEcs.Construction.BuildStrategies;
+using SolarEcs.Construction;
+using SolarEcs.Fusic.BuildStrategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarEcs.Construction
+namespace SolarEcs.Fusic
 {
+    /// <summary>
+    /// Additional Fusic build strategies useful for Solar projects.
+    /// </summary>
     public class SolarBuildStrategies : BuildStrategyChain, IRegisterImplementations
     {
         private CommonBuildStrategies CommonStrategies;
@@ -32,7 +36,6 @@ namespace SolarEcs.Construction
 
             AddBootstrapped<StoreBuildStrategy>();
             AddBootstrapped<ComponentSetBuildStrategy>();
-            AddInstance(new DependencyFactoryBuildStrategy());
             AddBootstrapped<EntityQueryBuildStrategy>();
             AddInstance(new QueryReductionStrategyBuildStrategy());
             AddInstance(new RecipeReductionStrategyBuildStrategy());

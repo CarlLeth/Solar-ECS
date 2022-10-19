@@ -1,4 +1,5 @@
 ﻿using Fusic;
+using SolarEcs.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarEcs.Construction.BuildStrategies
+namespace SolarEcs.Fusic.BuildStrategies
 {
     public sealed class ComponentSetBuildStrategy : IBuildStrategy
     {
-        private static readonly MethodInfo BuildComponentSetGenericMethod = typeof(ComponentSetBuildStrategy).GetMethod("BuildComponentSetGeneric", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo BuildComponentSetGenericMethod = typeof(ComponentSetBuildStrategy)
+            .GetMethod(nameof(BuildComponentSetGeneric), BindingFlags.NonPublic | BindingFlags.Instance);
         
         private IComponentCatalog Catalog { get; set; }
         private ITypeService TypeService { get; set; }

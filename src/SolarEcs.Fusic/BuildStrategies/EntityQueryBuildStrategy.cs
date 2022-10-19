@@ -1,5 +1,6 @@
 ﻿using Fusic;
 using SolarEcs;
+using SolarEcs.Construction;
 using SolarEcs.Queries;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolarEcs.Construction.BuildStrategies
+namespace SolarEcs.Fusic.BuildStrategies
 {
     public class EntityQueryBuildStrategy : IBuildStrategy
     {
-        private ITypeService TypeService { get; set; }
         private IComponentCatalog Catalog { get; set; }
 
-        public EntityQueryBuildStrategy(ITypeService typeService, IComponentCatalog catalog)
+        public EntityQueryBuildStrategy(IComponentCatalog catalog)
         {
-            this.TypeService = typeService;
             this.Catalog = catalog;
         }
 
