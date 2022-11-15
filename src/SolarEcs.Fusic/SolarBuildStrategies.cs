@@ -37,8 +37,6 @@ namespace SolarEcs.Fusic
             AddBootstrapped<StoreBuildStrategy>();
             AddBootstrapped<ComponentSetBuildStrategy>();
             AddBootstrapped<EntityQueryBuildStrategy>();
-            AddInstance(new QueryReductionStrategyBuildStrategy());
-            AddInstance(new RecipeReductionStrategyBuildStrategy());
         }
 
         private void AddDefaultNamespaceExclusions()

@@ -18,7 +18,7 @@ namespace SolarEcs.Recipes
             this.Recipes = recipes;
         }
 
-        public IQueryPlan<TModel> ExistingModels => QueryPlan.Union(Recipes.Select(o => o.ExistingModels));
+        public IQueryPlan<TModel> ExistingModels => QueryPlan.Concat(Recipes.Select(o => o.ExistingModels));
 
         public ITransaction<TModel> CreateTransaction()
         {
@@ -29,7 +29,7 @@ namespace SolarEcs.Recipes
             ITransaction<TModel> transaction = null;
             Action<Guid, TModel> assignAction = (id, model) => Assign(id, model, transaction, transactions);
 
-            var existingModels = new UnionQueryPlan<Guid, TModel>(transactions.Select(o => o.ExistingModels)).AsEntityQuery();
+            var existingModels = new ConcatenateQueryPlan<Guid, TModel>(transactions.Select(o => o.ExistingModels)).AsEntityQuery();
 
             Func<Guid, TModel, bool> canAssign = (id, model) => transactions.Count(t => t.CanAssign(id, model)) == 1;
 

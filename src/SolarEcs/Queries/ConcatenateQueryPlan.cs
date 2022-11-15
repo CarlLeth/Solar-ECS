@@ -15,11 +15,11 @@ namespace SolarEcs
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="query">This query.</param>
-        /// <param name="unionQuery">The query to concatenate to this one.</param>
+        /// <param name="withQuery">The query to concatenate to this one.</param>
         /// <returns></returns>
-        public static IQueryPlan<TResult> Union<TResult>(this IQueryPlan<TResult> query, IQueryPlan<TResult> unionQuery)
+        public static IQueryPlan<TResult> Concat<TResult>(this IQueryPlan<TResult> query, IQueryPlan<TResult> withQuery)
         {
-            return ((IQueryPlan<Guid, TResult>)query).Union(unionQuery).AsEntityQuery();
+            return ((IQueryPlan<Guid, TResult>)query).Concat(withQuery).AsEntityQuery();
         }
 
         /// <summary>
@@ -27,12 +27,44 @@ namespace SolarEcs
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="query">This query.</param>
-        /// <param name="unionQuery">The query to concatenate to this one.</param>
+        /// <param name="withQuery">The query to concatenate to this one.</param>
         /// <returns></returns>
-        public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(this IQueryPlan<TKey, TResult> query, IQueryPlan<TKey, TResult> unionQuery)
+        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        public static IQueryPlan<TResult> Union<TResult>(this IQueryPlan<TResult> query, IQueryPlan<TResult> withQuery) => query.Concat(withQuery);
+
+        /// <summary>
+        /// Concatenates two queries.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="query">This query.</param>
+        /// <param name="withQuery">The query to concatenate to this one.</param>
+        /// <returns></returns>
+        public static IQueryPlan<TKey, TResult> Concat<TKey, TResult>(this IQueryPlan<TKey, TResult> query, IQueryPlan<TKey, TResult> withQuery)
         {
-            var queries = new[] { query, unionQuery };
-            return new UnionQueryPlan<TKey, TResult>(queries);
+            var queries = new[] { query, withQuery };
+            return new ConcatenateQueryPlan<TKey, TResult>(queries);
+        }
+
+        /// <summary>
+        /// Concatenates two queries.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="query">This query.</param>
+        /// <param name="withQuery">The query to concatenate to this one.</param>
+        /// <returns></returns>
+        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(this IQueryPlan<TKey, TResult> query, IQueryPlan<TKey, TResult> withQuery) => query.Concat(withQuery);
+
+        /// <summary>
+        /// Concatenates multiple query plans.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        public static IQueryPlan<TKey, TResult> Concat<TKey, TResult>(IEnumerable<IQueryPlan<TKey, TResult>> queries)
+        {
+            return new ConcatenateQueryPlan<TKey, TResult>(queries);
         }
 
         /// <summary>
@@ -42,9 +74,18 @@ namespace SolarEcs
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queries"></param>
         /// <returns></returns>
-        public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(IEnumerable<IQueryPlan<TKey, TResult>> queries)
+        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(IEnumerable<IQueryPlan<TKey, TResult>> queries) => Concat(queries);
+
+        /// <summary>
+        /// Concatenates multiple query plans.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        public static IQueryPlan<TResult> Concat<TResult>(IEnumerable<IQueryPlan<TResult>> queries)
         {
-            return new UnionQueryPlan<TKey, TResult>(queries);
+            return new ConcatenateQueryPlan<Guid, TResult>(queries).AsEntityQuery();
         }
 
         /// <summary>
@@ -53,26 +94,19 @@ namespace SolarEcs
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queries"></param>
         /// <returns></returns>
-        public static IQueryPlan<TResult> Union<TResult>(IEnumerable<IQueryPlan<TResult>> queries)
-        {
-            return new UnionQueryPlan<Guid, TResult>(queries).AsEntityQuery();
-        }
+        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        public static IQueryPlan<TResult> Union<TResult>(IEnumerable<IQueryPlan<TResult>> queries) => Concat(queries);
     }
 }
 
 namespace SolarEcs.Queries
 {
-    public class UnionQueryPlan<TKey, TResult> : IQueryPlan<TKey, TResult>
+    public class ConcatenateQueryPlan<TKey, TResult> : IQueryPlan<TKey, TResult>
     {
-        private IEnumerable<IQueryPlan<TKey, TResult>> Plans { get; set; }
+        readonly IEnumerable<IQueryPlan<TKey, TResult>> Plans;
 
-        public UnionQueryPlan(IEnumerable<IQueryPlan<TKey, TResult>> plans)
+        public ConcatenateQueryPlan(IEnumerable<IQueryPlan<TKey, TResult>> plans)
         {
-            if (!plans.Any())
-            {
-                throw new ArgumentException("'plans' cannot be empty.");
-            }
-
             this.Plans = plans.Where(o => o.State != QueryPlanState.Empty).ToList();
         }
 
