@@ -8,16 +8,16 @@ namespace SolarEcs.Common.Engineering.Measurements
 {
     public class UnitConverter : IUnitConverter
     {
-        private readonly IUnitConversionSystem UnitConversionSystem;
+        private readonly Lazy<IEnumerable<IUnitConversionSystem>> UnitConversionSystems;
         private readonly IStore<UnitConversionCategorization> Categorizations;
 
         private Dictionary<Guid, IUnitConversionStrategy> StrategiesByUnit;
         private Dictionary<Guid, Guid> CategoriesByUnit;
 
-        public UnitConverter(IUnitConversionSystem unitConversionSystem, IStore<UnitConversionCategorization> categorizations)
+        public UnitConverter(Lazy<IEnumerable<IUnitConversionSystem>> unitConversionSystems, IStore<UnitConversionCategorization> categorizations)
         {
-            this.UnitConversionSystem = unitConversionSystem;
-            this.Categorizations = categorizations;
+            UnitConversionSystems = unitConversionSystems;
+            Categorizations = categorizations;
         }
 
         public double Normalize(Measurement measurement)
@@ -41,7 +41,9 @@ namespace SolarEcs.Common.Engineering.Measurements
         {
             if (StrategiesByUnit == null)
             {
-                StrategiesByUnit = UnitConversionSystem.Strategies.ExecuteAll().ToDictionary(o => o.Key, o => o.Model);
+                StrategiesByUnit = AllStrategies
+                    .ExecuteAll()
+                    .ToDictionary(o => o.Key, o => o.Model);
             }
 
             if (!StrategiesByUnit.ContainsKey(unitOfMeasure))
@@ -66,5 +68,8 @@ namespace SolarEcs.Common.Engineering.Measurements
 
             return CategoriesByUnit[unitOfMeasure];
         }
+
+        public IQueryPlan<IUnitConversionStrategy> AllStrategies => QueryPlan.Concat(UnitConversionSystems.Value.Select(o => o.Strategies));
+
     }
 }

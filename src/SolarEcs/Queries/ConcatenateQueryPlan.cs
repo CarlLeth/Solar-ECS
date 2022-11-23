@@ -29,7 +29,7 @@ namespace SolarEcs
         /// <param name="query">This query.</param>
         /// <param name="withQuery">The query to concatenate to this one.</param>
         /// <returns></returns>
-        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        [Obsolete("Deprecated due to deceptive name. Use Concat instead.")]
         public static IQueryPlan<TResult> Union<TResult>(this IQueryPlan<TResult> query, IQueryPlan<TResult> withQuery) => query.Concat(withQuery);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace SolarEcs
         /// <param name="query">This query.</param>
         /// <param name="withQuery">The query to concatenate to this one.</param>
         /// <returns></returns>
-        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        [Obsolete("Deprecated due to deceptive name. Use Concat instead.")]
         public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(this IQueryPlan<TKey, TResult> query, IQueryPlan<TKey, TResult> withQuery) => query.Concat(withQuery);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace SolarEcs
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queries"></param>
         /// <returns></returns>
-        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        [Obsolete("Deprecated due to deceptive name. Use Concat instead.")]
         public static IQueryPlan<TKey, TResult> Union<TKey, TResult>(IEnumerable<IQueryPlan<TKey, TResult>> queries) => Concat(queries);
 
         /// <summary>
@@ -94,8 +94,29 @@ namespace SolarEcs
         /// <typeparam name="TResult"></typeparam>
         /// <param name="queries"></param>
         /// <returns></returns>
-        [Obsolete($"Deprecated due to deceptive name. Use {nameof(Concat)} instead.")]
+        [Obsolete("Deprecated due to deceptive name. Use Concat instead.")]
         public static IQueryPlan<TResult> Union<TResult>(IEnumerable<IQueryPlan<TResult>> queries) => Concat(queries);
+
+        /// <summary>
+        /// Returns a query containing one entity per distinct key in any of the given queries.
+        /// The model attached to that key will be the first that appears in the ordered list of queries given.
+        /// Use this to create queries that have "fallback" or default values from other queries.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="queriesInPriorityOrder"></param>
+        /// <returns></returns>
+        public static IQueryPlan<TResult> UnionInPriorityOrder<TResult>(IEnumerable<IQueryPlan<TResult>> queriesInPriorityOrder)
+        {
+            return Concat(queriesInPriorityOrder.Select((query, i) => query.Select(o => new { Model = o, Priority = i })))
+                .GroupByKey()
+                .Select(grp => grp.OrderBy(o => o.Priority).FirstOrDefault())
+                .Select(o => o.Model);
+        }
+
+        public static IQueryPlan<TResult> UnionInPriorityOrder<TResult>(params IQueryPlan<TResult>[] queriesInPriorityOrder)
+        {
+            return UnionInPriorityOrder((IEnumerable<IQueryPlan<TResult>>)queriesInPriorityOrder);
+        }
     }
 }
 

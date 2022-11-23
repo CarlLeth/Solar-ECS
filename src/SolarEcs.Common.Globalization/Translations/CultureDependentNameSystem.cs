@@ -11,11 +11,13 @@ namespace SolarEcs.Common.Globalization.Translations
     public class CultureDependentNameSystem : INameSystem
     {
         private IQueryPlan<CultureDependentName> Names;
+        private StaticNameSystem Fallback;
         private ITextCulture CurrentCulture;
 
-        public CultureDependentNameSystem(IQueryPlan<CultureDependentName> names, ITextCulture currentCulture)
+        public CultureDependentNameSystem(IQueryPlan<CultureDependentName> names, StaticNameSystem fallback, ITextCulture currentCulture)
         {
             this.Names = names;
+            this.Fallback = fallback;
             this.CurrentCulture = currentCulture;
         }
 
@@ -25,20 +27,34 @@ namespace SolarEcs.Common.Globalization.Translations
             {
                 if (!CurrentCulture.IsAvailable)
                 {
-                    return QueryPlan.Empty<NameModel>();
+                    return Fallback.Query;
                 }
 
-                return Names
+                var cultureSpecificNames = Names
                     .Where(o => o.Model.Culture == CurrentCulture.Id)
                     .ShiftKey(o => o.Model.Entity)
                     .Select(o => new NameModel(o.Name));
+
+                return QueryPlan.UnionInPriorityOrder(
+                    cultureSpecificNames,
+                    Fallback.Query
+                );
             }
         }
 
 
         public IRecipe<NameModel> Recipe
         {
-            get { return SolarEcs.Recipe.Empty<NameModel>(); }
+            get
+            {
+                if (!CurrentCulture.IsAvailable)
+                {
+                    return Fallback.Recipe;
+                }
+
+                // TODO: There's a better way to provide translations than this
+                return SolarEcs.Recipe.Empty<NameModel>();
+            }
         }
     }
 }
