@@ -39,7 +39,20 @@ namespace SolarEcs.Common.LookupLists
                 (listTrans, nameTrans, textTrans) => new TransactionSpec<LookupListModel>(
                     assign: (id, model) =>
                     {
-                        listTrans.Add(new ListMembershipModel(id, list, model.Ordinal));
+                        var listMembership = ListSystem.Query
+                            .Where(o => o.Model.List == list && o.Model.Entity == id)
+                            .ExecuteKeysOnly()
+                            .FirstOrDefault();
+
+                        if (listMembership == Guid.Empty)
+                        {
+                            listTrans.Add(new ListMembershipModel(id, list, model.Ordinal));
+                        }
+                        else
+                        {
+                            listTrans.Assign(listMembership, new ListMembershipModel(id, list, model.Ordinal));
+                        }
+
                         nameTrans.Assign(id, new NameModel(model.Name));
 
                         if (model.Description != null)
