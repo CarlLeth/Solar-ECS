@@ -10,11 +10,11 @@ namespace SolarEcs.Common.Globalization.Translations
 {
     public class CultureDependentNameSystem : INameSystem
     {
-        private IQueryPlan<CultureDependentName> Names;
+        private IStore<CultureDependentName> Names;
         private StaticNameSystem Fallback;
         private ITextCulture CurrentCulture;
 
-        public CultureDependentNameSystem(IQueryPlan<CultureDependentName> names, StaticNameSystem fallback, ITextCulture currentCulture)
+        public CultureDependentNameSystem(IStore<CultureDependentName> names, StaticNameSystem fallback, ITextCulture currentCulture)
         {
             this.Names = names;
             this.Fallback = fallback;
@@ -30,7 +30,7 @@ namespace SolarEcs.Common.Globalization.Translations
                     return Fallback.Query;
                 }
 
-                var cultureSpecificNames = Names
+                var cultureSpecificNames = Names.ToQueryPlan()
                     .Where(o => o.Model.Culture == CurrentCulture.Id)
                     .ShiftKey(o => o.Model.Entity)
                     .Select(o => new NameModel(o.Name));
@@ -53,7 +53,19 @@ namespace SolarEcs.Common.Globalization.Translations
                 }
 
                 // TODO: There's a better way to provide translations than this
-                return SolarEcs.Recipe.Empty<NameModel>();
+                return Query.StartRecipe()
+                    .Include(Names.ToRecipe(),
+                        assign: (trans, id, model) =>
+                        {
+                            var existing = trans.ExistingModels
+                                .Where(o => o.Model.Entity == id && o.Model.Culture == CurrentCulture.Id)
+                                .ExecuteKeysOnly();
+
+                            var component = new CultureDependentName(id, CurrentCulture.Id, model.Name);
+                            trans.Assign(existing.Any() ? existing.First() : Guid.NewGuid(), component);
+                        },
+                        unassign: (trans, id) => trans.UnassignWhere(o => o.Entity == id && o.Culture == CurrentCulture.Id)
+                    );
             }
         }
     }

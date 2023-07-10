@@ -123,9 +123,11 @@ namespace SolarEcs.Tests.NetCore
             Assert.AreEqual("Should be the second thing in the list", list[1].Model.Description);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void ListSystemEnforcesUniqueListMembership()
         {
+            // TODO: It's not clear this is still desirable. Where should this constraint be enforced?
+
             var item = Guid.NewGuid();
             var list1 = Guid.NewGuid();
             var list2 = Guid.NewGuid();

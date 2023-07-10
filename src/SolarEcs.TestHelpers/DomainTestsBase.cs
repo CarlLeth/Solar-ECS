@@ -3,6 +3,7 @@ using Fusic.BuildStrategies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SolarEcs.Construction;
 using SolarEcs.Data.EntityFramework;
+using SolarEcs.Data.EntityFramework.Sql;
 using SolarEcs.Data.Memory;
 using SolarEcs.Fusic;
 using System;
@@ -54,10 +55,18 @@ namespace SolarEcs.TestHelpers
             //Reseed();
         }
 
-        protected void UseEntityFrameworkPersistence()
+        protected void UseEntityFrameworkPersistence(SqlDatabaseMode mode = SqlDatabaseMode.SqlServer)
         {
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseAlways<SandboxComponentDbContext>());
             Db = CreateDbContext(PersistenceTypeLibrary);
+
+            if (mode == SqlDatabaseMode.SqlServer)
+            {
+                Db.Database.ExecuteSqlCommand(@"
+                    IF NOT EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N'EntityListType' AND ss.name = N'dbo')
+                    CREATE TYPE [dbo].[EntityListType] AS TABLE([Id] [uniqueidentifier] NULL)"
+                );
+            }
 
             this.Catalog = Db;
             this.RegisterComponentPackage = pkg => Db.RegisterComponentPackage(pkg);
