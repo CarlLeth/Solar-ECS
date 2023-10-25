@@ -42,8 +42,8 @@ namespace SolarEcs.Common.Engineering.Measurements
                         name.Get(o => o.Name),
                         abbrev.Get(o => o.Text),
                         desc.Get(o => o.Text),
-                        reference.Get(o => o.ConversionFactor, scalar.Get(o => o.ConversionFactor)),
-                        reference.Get(o => o.ZeroPoint)
+                        reference.Get<double?>(o => o.ConversionFactor, scalar.Get(o => o.ConversionFactor)),
+                        reference.Get<double?>(o => o.ZeroPoint)
                     ));
             }
         }
@@ -54,8 +54,8 @@ namespace SolarEcs.Common.Engineering.Measurements
             {
                 return Query.StartRecipe()
                     .IncludeSimple(Categorizations.ToRecipe(), o => new UnitConversionCategorization(o.ConversionCategory))
-                    .IncludeSimple(ScalarUnits.ToRecipe(), o => new ScalarUnitOfMeasure(o.ConversionFactor.Value), o => o.ConversionFactor.HasValue && !o.ZeroPoint.HasValue)
-                    .IncludeSimple(ReferenceUnits.ToRecipe(), o => new ReferenceUnitOfMeasure(o.ConversionFactor.Value, o.ZeroPoint.Value), o => o.ConversionFactor.HasValue && o.ZeroPoint.HasValue)
+                    .IncludeSimple(ScalarUnits.ToRecipe(), o => new ScalarUnitOfMeasure(o.ConversionFactor.Value), o => o.ConversionFactor.HasValue && (!o.ZeroPoint.HasValue || o.ZeroPoint.Value == 0))
+                    .IncludeSimple(ReferenceUnits.ToRecipe(), o => new ReferenceUnitOfMeasure(o.ConversionFactor.Value, o.ZeroPoint.Value), o => o.ConversionFactor.HasValue && o.ZeroPoint.HasValue && o.ZeroPoint.Value != 0)
                     .IncludeSimple(Names.Recipe, o => new NameModel(o.Name), o => !string.IsNullOrEmpty(o.Name))
                     .IncludeSimple(Descriptions.Recipe, o => new TextModel(o.Description), o => !string.IsNullOrEmpty(o.Description))
                     .IncludeSimple(Abbreviations.ToRecipe(), o => new Abbreviation(o.Abbreviation), o => !string.IsNullOrEmpty(o.Abbreviation));

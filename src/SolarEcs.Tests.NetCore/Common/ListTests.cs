@@ -105,6 +105,8 @@ namespace SolarEcs.Tests.NetCore
             var apple = recipe.AddCommit(new LookupListModel("Apple", "Starts with 'A' but has no ordinal, so should be #3 in the list.", null));
             var banana = recipe.AddCommit(new LookupListModel("Banana", null, 1));
             var strawberry = recipe.AddCommit(new LookupListModel("Strawberry", "Should be the second thing in the list", 2));
+            recipe.AssignCommit(strawberry, new LookupListModel("Strawberry", "Actually let's change Strawberry's description", 2));
+
 
             var list = Build<ILookupListSystem>().QueryFor(fruits).OrderBy(o => o.Model.Ordinal ?? 999).ThenBy(o => o.Model.Name).ExecuteAll().ToList();
 
@@ -120,7 +122,7 @@ namespace SolarEcs.Tests.NetCore
             Assert.AreEqual("Banana", list[0].Model.Name);
             Assert.IsTrue(String.IsNullOrEmpty(list[0].Model.Description));
 
-            Assert.AreEqual("Should be the second thing in the list", list[1].Model.Description);
+            Assert.AreEqual("Actually let's change Strawberry's description", list[1].Model.Description);
         }
 
         //[TestMethod]
