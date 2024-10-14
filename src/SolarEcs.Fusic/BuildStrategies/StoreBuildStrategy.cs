@@ -29,27 +29,8 @@ namespace SolarEcs.Fusic.BuildStrategies
             return BuildResult.Success(() =>
             {
                 var componentType = type.GetGenericArguments()[0];
-                var store = Catalog.Store(componentType);
-                return WrapStoreInObservableProxy(store, componentType, buildSession);
+                return Catalog.Store(componentType);
             });
-        }
-
-        private object WrapStoreInObservableProxy(object store, Type componentType, IBuildSession buildSession)
-        {
-            var writeObserverImplementations = TypeService.GetImplementations(typeof(IComponentWriteObserver));
-            var builtImplementations = writeObserverImplementations
-                .Select(o => (IComponentWriteObserver)buildSession.BuildOrNull(o))
-                .ToList()
-                .Where(o => o != null);
-
-            if (builtImplementations.Any())
-            {
-                return Activator.CreateInstance(typeof(WriteObservableProxyStore<>).MakeGenericType(componentType), new object[] { store, builtImplementations });
-            }
-            else
-            {
-                return store;
-            }
         }
     }
 }

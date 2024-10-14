@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolarEcs.Common.ChangeTracking
 {
+    [Obsolete("Use EntityChangeEvent")]
     public class EntityCreationEvent
     {
         public Guid CreatingAgent { get; private set; }
