@@ -31,7 +31,7 @@ namespace SolarEcs.Transactions
             }
 
             PendingUnassigns.Remove(id);
-            PendingAssigns.Add(id, component);
+            PendingAssigns[id] = component;
         }
 
         public override void Unassign(Guid id)

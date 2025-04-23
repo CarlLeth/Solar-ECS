@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.2.0</Version>
+    <Version>2.2.1</Version>
     <Authors>Carl Leth</Authors>
     <Description>Framework for data access layers over an entity-component architecture</Description>
     <Copyright>2022 Carl Leth</Copyright>
