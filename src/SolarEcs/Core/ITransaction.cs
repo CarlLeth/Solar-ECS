@@ -34,19 +34,12 @@ namespace SolarEcs
     {
         public static void Commit(this ITransaction transaction)
         {
-            var commitables = transaction.ApplyChanges();
+            using (var scope = new TransactionScope())
+            {
+                var commitables = transaction.ApplyChanges();
 
-            if (commitables.Count() <= 1)
-            {
                 commitables.ForEach(o => o.Commit());
-            }
-            else
-            {
-                using (var scope = new TransactionScope())
-                {
-                    commitables.ForEach(o => o.Commit());
-                    scope.Complete();
-                }
+                scope.Complete();
             }
         }
 
