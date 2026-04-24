@@ -13,13 +13,15 @@ namespace SolarEcs.Common.Versioning
         readonly IStore<EntityVersion> EntityVersions;
         readonly VersioningSystem VersioningSystem;
         readonly IDataAgent CurrentAgent;
+        readonly int? MaxRetainedVersions;
 
-        public VersioningRecipe(IRecipe<T> modelRecipe, IStore<EntityVersion> entityVersions, VersioningSystem versioningSystem, IDataAgent currentAgent)
+        public VersioningRecipe(IRecipe<T> modelRecipe, IStore<EntityVersion> entityVersions, VersioningSystem versioningSystem, IDataAgent currentAgent, int? maxRetainedVersions)
         {
             ModelRecipe = modelRecipe;
             EntityVersions = entityVersions;
             VersioningSystem = versioningSystem;
             CurrentAgent = currentAgent;
+            MaxRetainedVersions = maxRetainedVersions;
         }
 
         public IQueryPlan<T> ExistingModels => VersioningSystem.LatestQuery(ModelRecipe.ExistingModels);
@@ -39,8 +41,23 @@ namespace SolarEcs.Common.Versioning
 
                 if (currentVersion == null)
                 {
-                    // Existing model, but no version information has been saved. Create the current version with unknown author and time.
+                    // No version information has been saved for this model yet. Create the current version with unknown author and time.
                     currentVersion = new EntityVersion(id, 1, null, null, false);
+                }
+                else if (MaxRetainedVersions.HasValue)
+                {
+                    // Add 1, since currentVersion.VersionNumber is 1 version behind the version we are currently creating.
+                    int maxVersionToKeep = currentVersion.VersionNumber - MaxRetainedVersions.Value + 1;
+
+                    var expiredVersionKeys = EntityVersions.ToQueryPlan()
+                        .Where(version => version.Model.PrimaryEntity == id && version.Model.VersionNumber < maxVersionToKeep)
+                        .ExecuteKeysOnly();
+
+                    foreach (var expiredKey in expiredVersionKeys)
+                    {
+                        modelTrans.Unassign(expiredKey);
+                        versionTrans.Unassign(expiredKey);
+                    }
                 }
 
                 modelTrans.Assign(currentVersionNewID, currentModel);

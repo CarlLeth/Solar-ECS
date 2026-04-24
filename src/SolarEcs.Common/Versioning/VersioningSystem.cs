@@ -9,7 +9,7 @@ namespace SolarEcs.Common.Versioning
     public interface IVersioningSystem
     {
         IQueryPlan<T> LatestQuery<T>(IQueryPlan<T> query);
-        IRecipe<T> LatestRecipe<T>(IRecipe<T> recipe);
+        IRecipe<T> LatestRecipe<T>(IRecipe<T> recipe, int? maxRetainedVersions = null);
 
         IQueryPlan<WithVersions<T>> AttachVersions<T>(IQueryPlan<T> query);
     }
@@ -34,9 +34,9 @@ namespace SolarEcs.Common.Versioning
                 .ResolveJoin((model, vers) => model.Model);
         }
 
-        public IRecipe<T> LatestRecipe<T>(IRecipe<T> recipe)
+        public IRecipe<T> LatestRecipe<T>(IRecipe<T> recipe, int? maxRetainedVersions = null)
         {
-            return new VersioningRecipe<T>(recipe, Versions, this, CurrentAgent);
+            return new VersioningRecipe<T>(recipe, Versions, this, CurrentAgent, maxRetainedVersions);
         }
 
         public IQueryPlan<WithVersions<T>> AttachVersions<T>(IQueryPlan<T> query)
