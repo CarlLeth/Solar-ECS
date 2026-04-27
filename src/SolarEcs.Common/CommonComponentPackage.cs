@@ -4,13 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SolarEcs.Construction;
-using SolarEcs.Common.ChangeTracking;
-using SolarEcs.Common.Lists;
-using SolarEcs.Common.Identification;
-using SolarEcs.Common.Hierarchy;
-using SolarEcs.Common.Comments;
-using SolarEcs.Common.Time;
-using SolarEcs.Common.Contacts;
 
 namespace SolarEcs.Common
 {
@@ -18,25 +11,27 @@ namespace SolarEcs.Common
     {
         public void Register(IComponentRegistration register)
         {
-            register.ValueType<TimePeriod>();
+            register.Component<ChangeTracking.EntityChangeEvent>();
+            register.Component<ChangeTracking.EntityCreationEvent>();
+            register.Component<ChangeTracking.EntityModificationEvent>();
 
-            register.Component<Abbreviation>();
-            register.Component<Alias>();
-            register.Component<CodeName>();
-            register.Component<ContactInfo>();
-            register.Component<IdentificationNumber>();
-            register.Component<StaticName>();
-            register.Component<StaticText>();
+            register.Component<Comments.TextComment>();
 
-            register.Component<OrderedListMembership>();
-            register.Component<UnorderedListMembership>();
+            register.Component<Contacts.ContactInfo>();
 
-            register.Component<TextComment>();
+            register.Component<Identification.Abbreviation>();
+            register.Component<Identification.Alias>();
+            register.Component<Identification.CodeName>();
+            register.Component<Identification.IdentificationNumber>();
+            register.Component<Identification.StaticName>();
+            register.Component<Identification.StaticText>();
 
-            register.Component<HierarchyPosition>();
+            register.Component<Hierarchy.HierarchyPosition>();
 
-            register.Component<EntityCreationEvent>();
-            register.Component<EntityModificationEvent>();
+            register.Component<Lists.OrderedListMembership>();
+            register.Component<Lists.UnorderedListMembership>();
+
+            register.ValueType<Time.TimePeriod>();
         }
     }
 }
