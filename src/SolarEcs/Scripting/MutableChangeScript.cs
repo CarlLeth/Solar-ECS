@@ -29,6 +29,11 @@ namespace SolarEcs.Scripting
                 throw new ArgumentException(string.Format("Attempted to assign a model to the empty id '{0}'", default(Guid)));
             }
 
+            if (model == null)
+            {
+                throw new ArgumentException($"Attempted to assign a null model to id '{id}'");
+            }
+
             Unassignments.Remove(id);
             Assignments.Add(id, model);
         }
