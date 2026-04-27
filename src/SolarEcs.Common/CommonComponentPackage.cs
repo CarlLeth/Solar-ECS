@@ -32,6 +32,8 @@ namespace SolarEcs.Common
             register.Component<Lists.UnorderedListMembership>();
 
             register.ValueType<Time.TimePeriod>();
+
+            register.Component<Versioning.EntityVersion>();
         }
     }
 }

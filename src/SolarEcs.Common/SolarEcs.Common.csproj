@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.2.0</Version>
+    <Version>2.3.0</Version>
     <Authors>Carl Leth</Authors>
     <Description>Solar components and systems useful to almost every data management system.</Description>
     <Copyright>2026 Carl Leth</Copyright>
