@@ -149,5 +149,39 @@ namespace SolarEcs.Scripting
         {
             return Select(o => (TCast)(object)o);
         }
+
+        /// <summary>
+        /// Returns a clone of this change script, but with models failing the given requirement being moved from "assign" to "unassign".
+        /// </summary>
+        /// <param name="modelRequirement"></param>
+        /// <returns></returns>
+        public ChangeScript<TModel> Require(Func<TModel, bool> modelRequirement)
+        {
+            var assigns = new Dictionary<Guid, TModel>();
+            var unassigns = new HashSet<Guid>(Unassign);
+
+            foreach (var assign in Assign)
+            {
+                if (modelRequirement(assign.Value))
+                {
+                    assigns[assign.Key] = assign.Value;
+                }
+                else
+                {
+                    unassigns.Add(assign.Key);
+                }
+            }
+
+            return new ChangeScript<TModel>(assigns, unassigns);
+        }
+
+        /// <summary>
+        /// Returns a concatenation of all keys being assigned to or unassigned from.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Guid> AllKeys()
+        {
+            return Assign.Keys.Concat(Unassign);
+        }
     }
 }
