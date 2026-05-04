@@ -10,5 +10,6 @@ namespace SolarEcs.Common.Engineering.Measurements
     {
         IQueryPlan<CombinedUnitModel> Query { get; }
         IRecipe<CombinedUnitModel> Recipe { get; }
+        IWritePlan<CombinedUnitModel> WritePlan { get; }
     }
 }

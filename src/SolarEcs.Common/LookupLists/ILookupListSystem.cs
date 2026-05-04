@@ -10,5 +10,6 @@ namespace SolarEcs.Common.LookupLists
     {
         IQueryPlan<LookupListModel> QueryFor(Guid list);
         IRecipe<LookupListModel> RecipeFor(Guid list);
+        IWritePlan<LookupListModel> WritePlanFor(Guid list);
     }
 }

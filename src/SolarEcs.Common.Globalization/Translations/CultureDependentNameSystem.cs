@@ -52,7 +52,6 @@ namespace SolarEcs.Common.Globalization.Translations
                     return Fallback.Recipe;
                 }
 
-                // TODO: There's a better way to provide translations than this
                 return Query.StartRecipe()
                     .Include(Names.ToRecipe(),
                         assign: (trans, id, model) =>

@@ -73,5 +73,12 @@ namespace SolarEcs.Common.LookupLists
                 )
             );
         }
+
+        public IWritePlan<LookupListModel> WritePlanFor(Guid list)
+        {
+            return QueryFor(list).StartWritePlan()
+                .IncludeSimple(NameSystem.WritePlan, o => new NameModel(o.Name))
+                .IncludeSimple(TextSystem.WritePlan, o => new TextModel(o.Description));
+        }
     }
 }

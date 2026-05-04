@@ -31,5 +31,13 @@ namespace SolarEcs.Common.LookupLists
                 .IncludeSimple(LookupLists.RecipeFor(list), model => new LookupListModel(model.Name, model.Description, model.Ordinal))
                 .IncludeSimple(CodeNames.ToRecipe(), model => new CodeName(model.CodeName));
         }
+
+        public IWritePlan<CodeNamedLookupListModel> WritePlanFor(Guid list)
+        {
+            return QueryFor(list)
+                .StartWritePlan()
+                .IncludeSimple(LookupLists.WritePlanFor(list), model => new LookupListModel(model.Name, model.Description, model.Ordinal))
+                .IncludeSimple(CodeNames.ToWritePlan(), model => new CodeName(model.CodeName));
+        }
     }
 }

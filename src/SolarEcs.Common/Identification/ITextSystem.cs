@@ -10,5 +10,6 @@ namespace SolarEcs.Common.Identification
     {
         IQueryPlan<TextModel> Query { get; }
         IRecipe<TextModel> Recipe { get; }
+        IWritePlan<TextModel> WritePlan { get; }
     }
 }

@@ -66,5 +66,40 @@ namespace SolarEcs.Common.Globalization.Translations
                     );
             }
         }
+
+        public IWritePlan<TextModel> WritePlan
+        {
+            get
+            {
+                if (!CurrentCulture.IsAvailable)
+                {
+                    return Fallback.WritePlan;
+                }
+
+                return Query.StartWritePlan()
+                    .Include(Text.ToWritePlan(), (script, part, existing) =>
+                    {
+                        var existingByEntity = existing
+                            .Where(o => script.AllKeys.Contains(o.Model.Entity) && o.Model.Culture == CurrentCulture.Id)
+                            .Select(o => o.Entity)
+                            .ExecuteAll()
+                            .ToDictionary(o => o.Model, o => o.Key);
+
+                        foreach (var name in script.Assign)
+                        {
+                            Guid cultureNameKey = existingByEntity.ContainsKey(name.Key) ? existingByEntity[name.Key] : Guid.NewGuid();
+                            part.Assign(cultureNameKey, new CultureDependentText(name.Key, CurrentCulture.Id, name.Value.Text));
+                        }
+
+                        foreach (var key in script.Unassign)
+                        {
+                            if (existingByEntity.ContainsKey(key))
+                            {
+                                part.Unassign(existingByEntity[key]);
+                            }
+                        }
+                    });
+            }
+        }
     }
 }

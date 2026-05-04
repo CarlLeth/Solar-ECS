@@ -8,13 +8,23 @@ namespace SolarEcs.Common.Identification
 {
     public class StaticTextSystem : ITextSystem
     {
-        public IQueryPlan<TextModel> Query { get; private set; }
-        public IRecipe<TextModel> Recipe { get; private set; }
+        private IStore<StaticText> StaticText;
+
+        public IQueryPlan<TextModel> Query => StaticText.ToQueryPlan().Select(o => new TextModel(o.Text));
+        public IRecipe<TextModel> Recipe => StaticText.ToRecipe().Select(o => new TextModel(o.Text), model => new StaticText(model.Text));
+
+        public IWritePlan<TextModel> WritePlan
+        {
+            get
+            {
+                return Query.StartWritePlan()
+                    .IncludeSimple(StaticText.ToWritePlan(), o => new StaticText(o.Text));
+            }
+        }
 
         public StaticTextSystem(IStore<StaticText> staticText)
         {
-            Query = staticText.ToQueryPlan().Select(o => new TextModel(o.Text));
-            Recipe = staticText.ToRecipe().Select(o => new TextModel(o.Text), model => new StaticText(model.Text));
+            this.StaticText = staticText;
         }
     }
 }

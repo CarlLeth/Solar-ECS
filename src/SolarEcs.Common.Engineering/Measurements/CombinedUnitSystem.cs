@@ -61,5 +61,19 @@ namespace SolarEcs.Common.Engineering.Measurements
                     .IncludeSimple(Abbreviations.ToRecipe(), o => new Abbreviation(o.Abbreviation), o => !string.IsNullOrEmpty(o.Abbreviation));
             }
         }
+
+        public IWritePlan<CombinedUnitModel> WritePlan
+        {
+            get
+            {
+                return Query.StartWritePlan()
+                    .IncludeSimple(Categorizations.ToWritePlan(), o => new UnitConversionCategorization(o.ConversionCategory))
+                    .IncludeSimple(ScalarUnits.ToWritePlan(), o => new ScalarUnitOfMeasure(o.ConversionFactor.Value), o => o.ConversionFactor.HasValue && (!o.ZeroPoint.HasValue || o.ZeroPoint.Value == 0))
+                    .IncludeSimple(ReferenceUnits.ToWritePlan(), o => new ReferenceUnitOfMeasure(o.ConversionFactor.Value, o.ZeroPoint.Value), o => o.ConversionFactor.HasValue && o.ZeroPoint.HasValue && o.ZeroPoint.Value != 0)
+                    .IncludeSimple(Names.WritePlan, o => new NameModel(o.Name), o => !string.IsNullOrEmpty(o.Name))
+                    .IncludeSimple(Descriptions.WritePlan, o => new TextModel(o.Description), o => !string.IsNullOrEmpty(o.Description))
+                    .IncludeSimple(Abbreviations.ToWritePlan(), o => new Abbreviation(o.Abbreviation), o => !string.IsNullOrEmpty(o.Abbreviation));
+            }
+        }
     }
 }

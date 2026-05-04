@@ -41,5 +41,15 @@ namespace SolarEcs.Common.Lists
                     .IncludeSimple(OrderedMembers.ToRecipe(), model => new OrderedListMembership(model.Entity, model.List, model.Ordinal.Value), model => model.Ordinal.HasValue);
             }
         }
+
+        public IWritePlan<ListMembershipModel> WritePlan
+        {
+            get
+            {
+                return Query.StartWritePlan()
+                    .IncludeSimple(UnorderedMembers.ToWritePlan(), model => new UnorderedListMembership(model.Entity, model.List), model => model.Ordinal == null)
+                    .IncludeSimple(OrderedMembers.ToWritePlan(), model => new OrderedListMembership(model.Entity, model.List, model.Ordinal.Value), model => model.Ordinal.HasValue);
+            }
+        }
     }
 }
