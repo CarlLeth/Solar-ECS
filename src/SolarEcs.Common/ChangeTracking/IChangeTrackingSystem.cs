@@ -14,5 +14,6 @@ namespace SolarEcs.Common.ChangeTracking
     {
         IQueryPlan<WithChangeEvents<T>> AttachTo<T>(IQueryPlan<T> baseQuery);
         IRecipe<T> AttachTo<T>(IRecipe<T> baseRecipe, Guid? changingAgent = null);
+        IWritePlan<T> AttachTo<T>(IWritePlan<T> baseWritePlan, Guid? changingAgent = null);
     }
 }

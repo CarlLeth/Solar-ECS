@@ -16,6 +16,9 @@ namespace SolarEcs
     public static class WritePlan
     {
         public static IWritePlan<T> Empty<T>() => new EmptyWritePlan<T>();
+
+        public static IWritePlan<T> Create<T>(IQueryPlan<T> existingModels, Func<ChangeScript<T>, IEnumerable<ICommitable>> applyFunc) =>
+            new DelegateWritePlan<T>(existingModels, applyFunc);
     }
 
     public static class WritePlanExtensions

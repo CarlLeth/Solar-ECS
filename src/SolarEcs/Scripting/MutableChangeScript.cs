@@ -48,5 +48,29 @@ namespace SolarEcs.Scripting
             Assignments.Remove(id);
             Unassignments.Add(id);
         }
+
+        /// <summary>
+        /// Assigns the model to new random key, and returns that key.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public Guid Add(TModel model)
+        {
+            var key = Guid.NewGuid();
+            Assign(key, model);
+            return key;
+        }
+
+        /// <summary>
+        /// Assigns multiple models to random keys at once.
+        /// </summary>
+        /// <param name="models"></param>
+        public void Add(IEnumerable<TModel> models)
+        {
+            foreach (var model in models)
+            {
+                Assign(Guid.NewGuid(), model);
+            }
+        }
     }
 }

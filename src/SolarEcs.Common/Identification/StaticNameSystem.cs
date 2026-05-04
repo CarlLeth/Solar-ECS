@@ -10,16 +10,37 @@ namespace SolarEcs.Common.Identification
 {
     public class StaticNameSystem : INameSystem
     {
-        public IQueryPlan<NameModel> Query { get; private set; }
-        public IRecipe<NameModel> Recipe { get; private set; }
+        private readonly IStore<StaticName> Names;
 
         public StaticNameSystem(IStore<StaticName> names)
         {
-            this.Query = names.ToQueryPlan()
-                .Select(o => new NameModel(o.Name));
+            Names = names;
+        }
 
-            this.Recipe = names.ToRecipe()
-                .Select(staticName => new NameModel(staticName.Name), nameModel => new StaticName(nameModel.Name));
+        public IQueryPlan<NameModel> Query
+        {
+            get
+            {
+                return Names.ToQueryPlan().Select(o => new NameModel(o.Name));
+            }
+        }
+
+        public IRecipe<NameModel> Recipe
+        {
+            get
+            {
+                return Names.ToRecipe()
+                    .Select(staticName => new NameModel(staticName.Name), nameModel => new StaticName(nameModel.Name));
+            }
+        }
+
+        public IWritePlan<NameModel> WritePlan
+        {
+            get
+            {
+                return Query.StartWritePlan()
+                    .IncludeSimple(Names.ToWritePlan(), nameModel => new StaticName(nameModel.Name));
+            }
         }
     }
 }

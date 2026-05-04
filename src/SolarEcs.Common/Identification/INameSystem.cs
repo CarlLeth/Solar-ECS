@@ -10,6 +10,7 @@ namespace SolarEcs.Common.Identification
     {
         IQueryPlan<NameModel> Query { get; }
         IRecipe<NameModel> Recipe { get; }
+        IWritePlan<NameModel> WritePlan { get; }
     }
 
     public static class NameSystemExtensions
@@ -21,9 +22,16 @@ namespace SolarEcs.Common.Identification
 
         public static IRecipe<Named<TModel>> AttachTo<TModel>(this INameSystem nameSystem, IRecipe<TModel> recipe)
         {
-            return QueryPlan.Empty<Named<TModel>>().StartRecipe()
+            return nameSystem.AttachTo(recipe.ExistingModels).StartRecipe()
                 .IncludeSimple(nameSystem.Recipe, o => new NameModel(o.Name))
                 .IncludeSimple(recipe, o => o.Model);
+        }
+
+        public static IWritePlan<Named<TModel>> AttachTo<TModel>(this INameSystem nameSystem, IWritePlan<TModel> writePlan)
+        {
+            return nameSystem.AttachTo(writePlan.ExistingModels).StartWritePlan()
+                .IncludeSimple(nameSystem.WritePlan, o => new NameModel(o.Name))
+                .IncludeSimple(writePlan, o => o.Model);
         }
     }
 }

@@ -179,9 +179,12 @@ namespace SolarEcs.Scripting
         /// Returns a concatenation of all keys being assigned to or unassigned from.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Guid> AllKeys()
+        public IEnumerable<Guid> AllKeys
         {
-            return Assign.Keys.Concat(Unassign);
+            get
+            {
+                return Assign.Keys.Concat(Unassign);
+            }
         }
     }
 }
