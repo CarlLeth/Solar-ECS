@@ -49,6 +49,14 @@ namespace SolarEcs.Scripting
             Unassignments.Add(id);
         }
 
+        public void Unassign(IEnumerable<Guid> unassignments)
+        {
+            foreach (var id in unassignments)
+            {
+                Unassign(id);
+            }
+        }
+
         /// <summary>
         /// Assigns the model to new random key, and returns that key.
         /// </summary>

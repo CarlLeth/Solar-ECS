@@ -9,7 +9,7 @@ namespace SolarEcs.WritePlans
     {
         public IStore<T> Store { get; }
 
-        public IQueryPlan<T> ExistingModels => throw new NotImplementedException();
+        public IQueryPlan<T> ExistingModels => Store.ToQueryPlan();
 
         public StoreWritePlan(IStore<T> store)
         {
