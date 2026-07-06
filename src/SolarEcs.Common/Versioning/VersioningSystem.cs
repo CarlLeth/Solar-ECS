@@ -15,6 +15,7 @@ namespace SolarEcs.Common.Versioning
         IWritePlan<T> LatestWritePlan<T>(IWritePlan<T> writePlan, int? maxRetainedVersions = null);
 
         IQueryPlan<WithVersions<T>> AttachVersions<T>(IQueryPlan<T> query);
+        IQueryPlan<Versioned<T>> VersionsOf<T>(IQueryPlan<T> query);
     }
 
     public class VersioningSystem : IVersioningSystem
@@ -154,6 +155,72 @@ namespace SolarEcs.Common.Versioning
                         .Select(o => new EntityVersionStub(o.VersionNumber, o.VersionDate, o.ModifyingAgent, o.IsDeleted))
                         .OrderByDescending(o => o.VersionNumber)
                 ));
+        }
+
+        public IQueryPlan<Versioned<T>> VersionsOf<T>(IQueryPlan<T> query)
+        {
+            var activeVersions = EntityVersions.ToQueryPlan()
+                .EntityJoin(query)
+                .ResolveJoin((vers, main) => vers.Model);
+
+            var primaryEntities = activeVersions.GroupBy(o => o.PrimaryEntity);
+
+            // We want to show the history of records that have been deleted. The problem is that their PrimaryEntity
+            // doesn't exist in the query. We can't pull all deleted records, because that will include records
+            // unrelated to query entirely. The only way we can know a version record belongs is if it shared a PrimaryEntity
+            // with another version.
+            var deletedVersions = EntityVersions.ToQueryPlan()
+                .Where(vers => vers.Model.IsDeleted)
+                .Join(primaryEntities, vers => vers.Model.PrimaryEntity, primary => primary.Key)
+                .ResolveJoin((vers, primary) => vers.Model);
+
+            var allVersions = activeVersions.Concat(deletedVersions);
+
+            return allVersions
+                .EntityLeftJoin(query)
+                .ResolveJoin((vers, record) => new 
+                {
+                    vers.Model.PrimaryEntity,
+                    VersionModel = new VersionModel<T>(
+                        record,
+                        new EntityVersionStub(vers.Model.VersionNumber, vers.Model.VersionDate, vers.Model.ModifyingAgent, vers.Model.IsDeleted)
+                    )
+                })
+                .GroupBy(o => o.PrimaryEntity)
+                .Select(grp => new Versioned<T>(grp.Select(o => o.VersionModel).OrderByDescending(o => o.Version.VersionNumber)));
+
+
+            //var relevantVersions = EntityVersions.ToQueryPlan()
+            //    .Join(query, vers => vers.Model.PrimaryEntity, primary => primary.Key)
+            //    .ResolveJoin((vers, primary) => vers);
+
+
+            //var activeVersions = query
+            //    .EntityJoin(EntityVersions.ToQueryPlan())
+            //    .ResolveJoin((main, vers) => new
+            //    {
+            //        vers.PrimaryEntity,
+            //        VersionModel = new VersionModel<T>(
+            //            new Optional<T>(new[] { main.Model }),
+            //            new EntityVersionStub(vers.VersionNumber, vers.VersionDate, vers.ModifyingAgent, vers.IsDeleted)
+            //        )
+            //    });
+
+
+            //var empty = Enumerable.Empty<T>();
+
+            //    {
+            //        vers.Model.PrimaryEntity,
+            //        VersionModel = new VersionModel<T>(
+            //            new Optional<T>(empty),
+            //            new EntityVersionStub(vers.Model.VersionNumber, vers.Model.VersionDate, vers.Model.ModifyingAgent, vers.Model.IsDeleted)
+            //        )
+            //    });
+
+            //return activeVersions
+            //    .Concat(deletedVersions)
+            //    .GroupBy(o => o.PrimaryEntity)
+            //    .Select(grp => new Versioned<T>(grp.Select(o => o.VersionModel).OrderByDescending(o => o.Version.VersionNumber)));
         }
     }
 }

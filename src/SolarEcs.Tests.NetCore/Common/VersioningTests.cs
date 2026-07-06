@@ -74,9 +74,17 @@ namespace SolarEcs.Tests.NetCore.Common
             Assert.AreEqual("Pie", latest[pie].Name);
             Assert.IsFalse(latest.ContainsKey(chicken));
 
-            var allVersions = versioningSystem.AttachVersions(Query).ExecuteToDictionary();
+            var withVersions = versioningSystem.AttachVersions(Query).ExecuteToDictionary();
 
-            Assert.AreEqual(2, allVersions.Count);
+            Assert.AreEqual(2, withVersions.Count);
+            Assert.AreEqual("Pie", withVersions[pie].Model.Name);
+            Assert.AreEqual(2, withVersions[pie].Versions.Count());
+            Assert.IsFalse(withVersions.ContainsKey(chicken));
+
+            var allVersions = versioningSystem.VersionsOf(Query).ExecuteToDictionary();
+
+            Assert.AreEqual(3, allVersions.Count);
+            Assert.IsTrue(allVersions[chicken].Versions.First().Version.IsDeleted);
         }
     }
 }
