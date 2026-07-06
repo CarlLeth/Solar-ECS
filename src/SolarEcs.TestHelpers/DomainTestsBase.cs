@@ -60,6 +60,11 @@ namespace SolarEcs.TestHelpers
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseAlways<SandboxComponentDbContext>());
             Db = CreateDbContext(PersistenceTypeLibrary);
 
+            this.Catalog = Db;
+            this.RegisterComponentPackage = pkg => Db.RegisterComponentPackage(pkg);
+
+            RegisterPackages();
+
             if (mode == SqlDatabaseMode.SqlServer)
             {
                 Db.Database.ExecuteSqlCommand(@"
@@ -68,10 +73,6 @@ namespace SolarEcs.TestHelpers
                 );
             }
 
-            this.Catalog = Db;
-            this.RegisterComponentPackage = pkg => Db.RegisterComponentPackage(pkg);
-
-            RegisterPackages();
             //Reseed();
         }
 

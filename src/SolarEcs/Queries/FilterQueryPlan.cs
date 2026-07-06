@@ -48,6 +48,8 @@ namespace SolarEcs.Queries
         public IQueryPlan<TKey, TResult> BaseQuery { get; private set; }
         public Expression<Func<IKeyWith<TKey, TResult>, bool>> FilterPredicate { get; private set; }
 
+        private Expression<Func<IKeyWith<TKey, TResult>, bool>> _cleanedPredicate;
+
         public FilterQueryPlan(IQueryPlan<TKey, TResult> baseQuery, Expression<Func<IKeyWith<TKey, TResult>, bool>> filterPredicate)
         {
             this.BaseQuery = baseQuery;
@@ -74,7 +76,15 @@ namespace SolarEcs.Queries
 
         public IQueryable<IKeyWith<TKey, TResult>> ImmaterialQuery
         {
-            get { return BaseQuery.ImmaterialQuery.Where(FilterPredicate); }
+            get
+            {
+                if (_cleanedPredicate == null)
+                {
+                    _cleanedPredicate = QueryExpressions.Clean(FilterPredicate);
+                }
+
+                return BaseQuery.ImmaterialQuery.Where(_cleanedPredicate);
+            }
         }
     }
 }

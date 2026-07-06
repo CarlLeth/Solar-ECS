@@ -20,7 +20,6 @@ namespace SolarEcs.Queries
         }
 
         public static Expression Clean(this Expression expr)
- 
         {
             return ConstructorSafe(OptionalSafe(expr));
         }
