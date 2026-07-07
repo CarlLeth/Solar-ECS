@@ -661,7 +661,7 @@ namespace SolarEcs
                 replacer.AddReplacementRule(resultSelector.Parameters[i], itemAccessor);
             }
 
-            var body = replacer.Visit(resultSelector.Body);
+            var body = QueryExpressions.Clean(replacer.Visit(resultSelector.Body));
             return Expression.Lambda<Func<TTuple, TResult>>(body, param);
         }
 
