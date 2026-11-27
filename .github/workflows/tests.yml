@@ -1,0 +1,44 @@
+name: tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Developer edition is free but licensed for development/testing only --
+      # appropriate for a CI test run. Do not copy this for production use.
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: "SolarTests_2026!"
+          MSSQL_PID: "Developer"
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd "opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P 'SolarTests_2026!' -Q 'SELECT 1' || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build
+        run: dotnet build src/SolarCore.sln --configuration Release
+
+      - name: Run in-memory tests
+        run: dotnet test src/SolarEcs.Tests.NetCore/SolarEcs.Tests.NetCore.csproj --configuration Release --no-build
+
+      - name: Run EF SQL Server tests
+        run: dotnet test src/SolarEcs.Tests.EntityFramework/SolarEcs.Tests.EntityFramework.csproj --configuration Release --no-build

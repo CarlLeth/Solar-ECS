@@ -18,6 +18,16 @@ namespace SolarEcs.TestHelpers
     {
         private static IPersistenceTypeLibrary PersistenceTypeLibrary = new PersistenceTypeLibrary();
 
+        /// <summary>
+        /// The shared persistence type library for all test classes in the AppDomain.
+        /// Persisted types must be reused across contexts, so any manually-constructed
+        /// ComponentDbContext should use this library rather than creating its own.
+        /// </summary>
+        protected static IPersistenceTypeLibrary SharedPersistenceTypeLibrary
+        {
+            get { return PersistenceTypeLibrary; }
+        }
+
         protected IPurgeableComponentCatalog Catalog { get; private set; }
         protected ITypeService TypeService { get; private set; }
         protected IFusicContainer Container { get; private set; }
@@ -42,6 +52,14 @@ namespace SolarEcs.TestHelpers
 
             InitializeContainer();
             UseMemoryPersistence();
+        }
+
+        /// <summary>
+        /// The DbContext created by UseEntityFrameworkPersistence, if any.
+        /// </summary>
+        protected SandboxComponentDbContext TestDb
+        {
+            get { return Db; }
         }
 
         protected void UseMemoryPersistence()

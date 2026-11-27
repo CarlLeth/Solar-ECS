@@ -1,0 +1,15 @@
+version: "3.8"
+
+# The Developer edition of SQL Server is free but licensed for development and
+# testing use only -- which is exactly what this container is for. Do not reuse
+# this compose file as a template for a production deployment.
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: solar-tests-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SolarTests_2026!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
